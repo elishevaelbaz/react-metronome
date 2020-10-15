@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Metronome.css'
 import click1 from './click1.wav';
 import click2 from './click2.wav';
+import Counter from './Counter';
 
 export default class Mentronome extends Component{
   state = {
@@ -86,12 +87,15 @@ export default class Mentronome extends Component{
     const {playing, bpm} = this.state
 
     return(
-      <div className="metronome">
-        <div className="bpm-slider">
-          <div>{bpm} BPM</div>
-          <input type="range" min="60" max="240" onChange={this.handleBpmChange} value={bpm}/>
+      <div>
+        <div className="metronome">
+          <div className="bpm-slider">
+            <div>{bpm} BPM</div>
+            <input type="range" min="60" max="240" onChange={this.handleBpmChange} value={bpm}/>
+          </div>
+          <button onClick={this.startStop}>{playing ? 'Stop' : 'Start'}</button>
         </div>
-        <button onClick={this.startStop}>{playing ? 'Stop' : 'Start'}</button>
+        <Counter />
       </div>
     )
   }
